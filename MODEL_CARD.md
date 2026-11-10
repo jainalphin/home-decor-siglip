@@ -18,6 +18,9 @@ A fine-tune of [`google/siglip2-base-patch16-224`](https://huggingface.co/google
 
 **Non-commercial use only** (CC BY-NC 4.0). Research / portfolio model.
 
+Code (data cleaning, training, evaluation): [github.com/jainalphin/home-decor-siglip](https://github.com/jainalphin/home-decor-siglip).
+Every evaluation table, including runs that did not help: [RESULTS.md](https://github.com/jainalphin/home-decor-siglip/blob/main/RESULTS.md).
+
 ## Results at a glance
 
 All numbers are on held-out data that was never used for training or for choosing the checkpoint.
@@ -61,7 +64,7 @@ import torch
 from PIL import Image
 from transformers import AutoModel, AutoProcessor
 
-model_id = "<this-repo-id>"
+model_id = "AlphJain/home-decor-siglip2"
 model = AutoModel.from_pretrained(model_id).eval()
 processor = AutoProcessor.from_pretrained(model_id)
 
@@ -118,7 +121,9 @@ Cleaning before training:
 
 - Base model: [google/siglip2-base-patch16-224](https://huggingface.co/google/siglip2-base-patch16-224).
 - Amazon Berkeley Objects: CC BY 4.0 (Collins et al., 2022).
-- DeepFurniture (Liu et al., 2019): check its license before any reuse.
+- DeepFurniture (Liu et al., 2019, [arXiv 1911.09299](https://arxiv.org/abs/1911.09299)), created and owned by COOHOM / Kujiale:
+  AFL-3.0 on its [Hugging Face page](https://huggingface.co/datasets/byliu/DeepFurniture); the full dataset is shared under the
+  owner's terms of use.
 - Captions: Qwen3-VL-32B-Instruct and OpenAI gpt-4.1-mini outputs.
 - Evaluation only (not trained on): Shop the Look (Pinterest), Pix3D, MS COCO, Places365.
 - No training images are redistributed with this model.
