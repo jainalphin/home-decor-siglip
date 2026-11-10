@@ -1,0 +1,12 @@
+__pycache__/
+*.pyc
+.DS_Store
+*.ipynb_checkpoints
+.env
+# data, weights and run outputs never go in this repo
+*.jsonl
+*.safetensors
+*.pt
+*.tar
+*.csv
+runs/
