@@ -9,5 +9,7 @@ packaging==24.2
 pillow
 requests
 openai
+matplotlib   # eval/build_stl_eval.py previews
+tqdm
 # optional
 # modal    # data/vlm_captions_modal.py
