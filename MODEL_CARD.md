@@ -126,4 +126,3 @@ Cleaning before training:
   owner's terms of use.
 - Captions: Qwen3-VL-32B-Instruct and OpenAI gpt-4.1-mini outputs.
 - Evaluation only (not trained on): Shop the Look (Pinterest), Pix3D, MS COCO, Places365.
-- No training images are redistributed with this model.
