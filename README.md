@@ -29,7 +29,8 @@ python data/recaption.py                  #    new captions + queries (run with 
 python data/score_clean_dataset.py        #    image-text match + near-duplicates (GPU)
 python data/build_clean_dataset.py        #    clean training split -> prints its run id
 python finetuning/run_training.py         # 4. set CLEAN_RUN to that run id; DRY_RUN = True first, then False (GPU)
-python eval/eval_stl_and_text.py          # 5. evaluation (GPU)
+python eval/build_stl_eval.py             # 5. Shop the Look test set (once; then eval/upload_stl_eval.py)
+python eval/eval_stl_and_text.py          #    evaluation (GPU)
 python eval/eval_external.py
 python eval/eval_room_type.py
 ```
@@ -55,6 +56,8 @@ python eval/eval_room_type.py
 | `pix3d.py`, `coco.py` | Real-photo sets (Pix3D furniture, COCO home rooms), used for the leak check and the external evaluation |
 
 The script that first built the base Hugging Face dataset from ABO and DeepFurniture is not included.
+Shop the Look photo links expire over time, so a rebuilt test set will be close to, not identical with, the one
+behind the published numbers.
 
 **2. Leak check** (`data/`)
 
@@ -84,6 +87,8 @@ The script that first built the base Hugging Face dataset from ABO and DeepFurni
 
 | Script | What it does |
 |---|---|
+| `build_stl_eval.py` | Builds the Shop the Look test set: STL metadata from [kang205/STL-Dataset](https://github.com/kang205/STL-Dataset), photos from Pinterest's image links; 3,000 held-out scenes → 2,750 crop queries in 11 categories, their products + 8,000 distractors, and held-out lists so they are never trained on |
+| `upload_stl_eval.py` | Uploads that set to a **private** Hugging Face dataset (the images have no stated license; keep it private) |
 | `eval_stl_and_text.py` | Shop the Look test (held-out queries, per category, bootstrap intervals) and text-search tests on the test split |
 | `eval_external.py` | COCO human captions → photo, Pix3D photo → same furniture model |
 | `eval_room_type.py` | Zero-shot room type on Places365 home rooms |
